@@ -14,6 +14,9 @@
 		044433052C2080D9008506BE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044433042C2080D9008506BE /* LoginView.swift */; };
 		044433072C2081B1008506BE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044433062C2081B1008506BE /* DetailView.swift */; };
 		0444330A2C208293008506BE /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 044433092C208293008506BE /* OAuthSwift */; };
+		0444330C2C21EBB5008506BE /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0444330B2C21EBB5008506BE /* info.plist */; };
+		0444330E2C21ED51008506BE /* OAuth2Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444330D2C21ED51008506BE /* OAuth2Handler.swift */; };
+		044433102C22F6D9008506BE /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444330F2C22F6D9008506BE /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		044432FD2C207816008506BE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		044433042C2080D9008506BE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		044433062C2081B1008506BE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		0444330B2C21EBB5008506BE /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		0444330D2C21ED51008506BE /* OAuth2Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Handler.swift; sourceTree = "<group>"; };
+		0444330F2C22F6D9008506BE /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +64,11 @@
 			isa = PBXGroup;
 			children = (
 				044432F62C207814008506BE /* swifty_companionApp.swift */,
+				0444330D2C21ED51008506BE /* OAuth2Handler.swift */,
+				0444330F2C22F6D9008506BE /* APIClient.swift */,
 				044432F82C207814008506BE /* ContentView.swift */,
 				044433042C2080D9008506BE /* LoginView.swift */,
+				0444330B2C21EBB5008506BE /* info.plist */,
 				044433062C2081B1008506BE /* DetailView.swift */,
 				044432FA2C207816008506BE /* Assets.xcassets */,
 				044432FC2C207816008506BE /* Preview Content */,
@@ -141,6 +150,7 @@
 			files = (
 				044432FE2C207816008506BE /* Preview Assets.xcassets in Resources */,
 				044432FB2C207816008506BE /* Assets.xcassets in Resources */,
+				0444330C2C21EBB5008506BE /* info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +165,8 @@
 				044433072C2081B1008506BE /* DetailView.swift in Sources */,
 				044432F72C207814008506BE /* swifty_companionApp.swift in Sources */,
 				044433052C2080D9008506BE /* LoginView.swift in Sources */,
+				0444330E2C21ED51008506BE /* OAuth2Handler.swift in Sources */,
+				044433102C22F6D9008506BE /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +298,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CONFIG_FILE = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"swifty-companion/Preview Content\"";
 				DEVELOPMENT_TEAM = VDA96J9PJZ;
@@ -301,6 +314,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = "$(SRCROOT)/Config.xcconfig";
 				PRODUCT_BUNDLE_IDENTIFIER = "Anaaaa.swifty-companion";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -315,6 +329,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CONFIG_FILE = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"swifty-companion/Preview Content\"";
 				DEVELOPMENT_TEAM = VDA96J9PJZ;
@@ -330,6 +345,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = "$(SRCROOT)/Config.xcconfig";
 				PRODUCT_BUNDLE_IDENTIFIER = "Anaaaa.swifty-companion";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
