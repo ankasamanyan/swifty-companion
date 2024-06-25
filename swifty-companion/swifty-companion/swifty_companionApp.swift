@@ -8,17 +8,19 @@
 import SwiftUI
 import OAuthSwift
 
-@main
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if url.host == "oauth-callback" {
             OAuthSwift.handle(url: url)
+            return true
         }
-        return true
+        return false
     }
 }
 
+@main
 struct swifty_companionApp: App {
     var body: some Scene {
         WindowGroup {
@@ -26,4 +28,3 @@ struct swifty_companionApp: App {
         }
     }
 }
-

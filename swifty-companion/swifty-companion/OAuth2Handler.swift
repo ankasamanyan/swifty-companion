@@ -8,7 +8,6 @@ class OAuth2Handler: ObservableObject {
     @Published var isAuthenticated = false
     var oauthswift: OAuth2Swift?
     
-    // Your UID and Secret
     let clientID = Bundle.main.infoDictionary?["CLIENT_ID"] as? String ?? ""
     let clientSecret = Bundle.main.infoDictionary?["CLIENT_SECRET"] as? String ?? ""
     
@@ -20,9 +19,11 @@ class OAuth2Handler: ObservableObject {
             accessTokenUrl: "https://api.intra.42.fr/oauth/token",
             responseType: "code"
         )
+        print("OAuth2Swift initialized with clientID: \(clientID), clientSecret: \(clientSecret)")
     }
-    
+
     func doOAuth2Login() {
+        print("Starting OAuth2 login")
         oauthswift?.authorize(
             withCallbackURL: URL(string: "swiftycompanion://oauth-callback/intra")!,
             scope: "public",
@@ -38,6 +39,7 @@ class OAuth2Handler: ObservableObject {
             }
         }
     }
+
     
     private func saveToken(_ token: String, refreshToken: String, expiration: Date?) {
         let tokenData = Data(token.utf8)
