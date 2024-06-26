@@ -14,6 +14,7 @@
 		044433052C2080D9008506BE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044433042C2080D9008506BE /* LoginView.swift */; };
 		044433072C2081B1008506BE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044433062C2081B1008506BE /* DetailView.swift */; };
 		0444330A2C208293008506BE /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 044433092C208293008506BE /* OAuthSwift */; };
+		044A6BA82C2C7E8500F6A1E6 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 044A6BA72C2C7E8500F6A1E6 /* Credentials.plist */; };
 		04DF888C2C2AD353003C8341 /* OAuth2Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF888B2C2AD353003C8341 /* OAuth2Handler.swift */; };
 		04DF888E2C2AD35B003C8341 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF888D2C2AD35B003C8341 /* APIClient.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		044432FD2C207816008506BE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		044433042C2080D9008506BE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		044433062C2081B1008506BE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		044A6BA72C2C7E8500F6A1E6 /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		04DF888B2C2AD353003C8341 /* OAuth2Handler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2Handler.swift; sourceTree = "<group>"; };
 		04DF888D2C2AD35B003C8341 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		04DF888F2C2ADF39003C8341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				044432F62C207814008506BE /* swifty_companionApp.swift */,
 				044432F82C207814008506BE /* ContentView.swift */,
 				044433042C2080D9008506BE /* LoginView.swift */,
+				044A6BA72C2C7E8500F6A1E6 /* Credentials.plist */,
 				04DF888B2C2AD353003C8341 /* OAuth2Handler.swift */,
 				04DF888D2C2AD35B003C8341 /* APIClient.swift */,
 				044433062C2081B1008506BE /* DetailView.swift */,
@@ -147,6 +150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044A6BA82C2C7E8500F6A1E6 /* Credentials.plist in Resources */,
 				044432FE2C207816008506BE /* Preview Assets.xcassets in Resources */,
 				044432FB2C207816008506BE /* Assets.xcassets in Resources */,
 			);
