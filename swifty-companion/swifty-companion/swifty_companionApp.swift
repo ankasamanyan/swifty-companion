@@ -9,24 +9,27 @@ import SwiftUI
 import OAuthSwift
 
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        print("loooool")
-        if url.host == "oauth-callback" {
-            print("leeeeeeeel")
-            OAuthSwift.handle(url: url)
-            return true
-        }
-        return false
-    }
-}
+//class AppDelegate: UIResponder, UIApplicationDelegate {
+//
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        print("loooool")
+//        if url.host == "oauth-callback" {
+//            print("leeeeeeeel")
+//            OAuthSwift.handle(url: url)
+//            return true
+//        }
+//        return false
+//    }
+//}
 
 @main
 struct swifty_companionApp: App {
     var body: some Scene {
         WindowGroup {
            LoginView()
+   .onOpenURL(perform: { url in
+    OAuthSwift.handle(url: url)
+   })
         }
     }
 }

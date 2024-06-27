@@ -41,9 +41,18 @@ struct LoginView: View {
                             .fontWeight(.semibold)
                             .foregroundColor(.indigo)
                             .padding(.horizontal, 70)
-                            .padding(.vertical, 15)
+                            .padding(.vertical, 20)
                             .background(Color.white.opacity(0.8))
-                            .cornerRadius(10)
+                            .clipShape(.capsule)
+                        
+//                        Text("Log In With 42")
+//                            .font(.title2)
+//                            .fontWeight(.semibold)
+//                            .foregroundColor(.indigo)
+//                            .padding(.horizontal, 70)
+//                            .padding(.vertical, 20)
+//                            .background(Color.white.opacity(0.8))
+//                            .clipShape(.capsule)
                     }
                     .padding(.bottom, 50)
                 }
@@ -55,7 +64,7 @@ struct LoginView: View {
                 }
             }
             .navigationDestination(isPresented: $navigateToDetail) {
-                DetailView()
+                ProfileView()
             }
         }
     }
