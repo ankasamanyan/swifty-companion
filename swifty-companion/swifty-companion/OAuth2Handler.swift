@@ -47,6 +47,7 @@ class OAuth2Handler: ObservableObject {
             scope: "public",
             state: "42"
         ) { result in
+            print("this is not getting printed")
             switch result {
             case .success(let (credential, _, _)):
                 print("OAuth Token: \(credential.oauthToken)")

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		044432F72C207814008506BE /* swifty_companionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044432F62C207814008506BE /* swifty_companionApp.swift */; };
-		044432F92C207814008506BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044432F82C207814008506BE /* ContentView.swift */; };
 		044432FB2C207816008506BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044432FA2C207816008506BE /* Assets.xcassets */; };
 		044432FE2C207816008506BE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044432FD2C207816008506BE /* Preview Assets.xcassets */; };
 		044433052C2080D9008506BE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044433042C2080D9008506BE /* LoginView.swift */; };
@@ -22,7 +21,6 @@
 /* Begin PBXFileReference section */
 		044432F32C207814008506BE /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		044432F62C207814008506BE /* swifty_companionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swifty_companionApp.swift; sourceTree = "<group>"; };
-		044432F82C207814008506BE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		044432FA2C207816008506BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		044432FD2C207816008506BE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		044433042C2080D9008506BE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -66,7 +64,6 @@
 			children = (
 				04DF888F2C2ADF39003C8341 /* Info.plist */,
 				044432F62C207814008506BE /* swifty_companionApp.swift */,
-				044432F82C207814008506BE /* ContentView.swift */,
 				044433042C2080D9008506BE /* LoginView.swift */,
 				044A6BA72C2C7E8500F6A1E6 /* Credentials.plist */,
 				04DF888B2C2AD353003C8341 /* OAuth2Handler.swift */,
@@ -163,7 +160,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				044432F92C207814008506BE /* ContentView.swift in Sources */,
 				044433072C2081B1008506BE /* DetailView.swift in Sources */,
 				044432F72C207814008506BE /* swifty_companionApp.swift in Sources */,
 				044433052C2080D9008506BE /* LoginView.swift in Sources */,

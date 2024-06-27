@@ -61,6 +61,11 @@
             value = "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"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "IDEPreferLogStreaming"
+            value = "YES"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
