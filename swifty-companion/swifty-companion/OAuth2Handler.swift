@@ -33,7 +33,7 @@ class OAuth2Handler: ObservableObject {
                 responseType: "code"
             )
                 
-            print("OAuth2Swift initialized with clientID: \(clientID), clientSecret: \(clientSecret)")
+//            print("OAuth2Swift initialized with clientID: \(clientID), clientSecret: \(clientSecret)")
                 
         } catch {
             fatalError("Error loading plist file: \(error)")
@@ -47,7 +47,6 @@ class OAuth2Handler: ObservableObject {
             scope: "public",
             state: "42"
         ) { result in
-            print("this is not getting printed")
             switch result {
             case .success(let (credential, _, _)):
                 print("OAuth Token: \(credential.oauthToken)")
@@ -71,13 +70,10 @@ class OAuth2Handler: ObservableObject {
             kSecValueData: tokenData
         ] as [String : Any]
 
-        // Delete any existing items
         SecItemDelete(query as CFDictionary)
 
-        // Add the new keychain item
         SecItemAdd(query as CFDictionary, nil)
 
-        // Save refresh token
         let refreshQuery = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: "refreshToken",
@@ -87,7 +83,6 @@ class OAuth2Handler: ObservableObject {
         SecItemDelete(refreshQuery as CFDictionary)
         SecItemAdd(refreshQuery as CFDictionary, nil)
 
-        // Save expiration date
         if let expirationTime = expirationData {
             let expirationQuery = [
                 kSecClass: kSecClassGenericPassword,

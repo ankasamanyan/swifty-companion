@@ -14,6 +14,7 @@
 		044433072C2081B1008506BE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044433062C2081B1008506BE /* ProfileView.swift */; };
 		0444330A2C208293008506BE /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 044433092C208293008506BE /* OAuthSwift */; };
 		044A6BA82C2C7E8500F6A1E6 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 044A6BA72C2C7E8500F6A1E6 /* Credentials.plist */; };
+		044A6BAB2C346EF200F6A1E6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 044A6BAA2C346EF200F6A1E6 /* Kingfisher */; };
 		04DF888C2C2AD353003C8341 /* OAuth2Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF888B2C2AD353003C8341 /* OAuth2Handler.swift */; };
 		04DF888E2C2AD35B003C8341 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF888D2C2AD35B003C8341 /* APIClient.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044A6BAB2C346EF200F6A1E6 /* Kingfisher in Frameworks */,
 				0444330A2C208293008506BE /* OAuthSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +103,7 @@
 			name = "swifty-companion";
 			packageProductDependencies = (
 				044433092C208293008506BE /* OAuthSwift */,
+				044A6BAA2C346EF200F6A1E6 /* Kingfisher */,
 			);
 			productName = "swifty-companion";
 			productReference = 044432F32C207814008506BE /* swifty-companion.app */;
@@ -132,6 +135,7 @@
 			mainGroup = 044432EA2C207814008506BE;
 			packageReferences = (
 				044433082C208293008506BE /* XCRemoteSwiftPackageReference "OAuthSwift" */,
+				044A6BA92C346EF200F6A1E6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 044432F42C207814008506BE /* Products */;
 			projectDirPath = "";
@@ -384,6 +388,14 @@
 				minimumVersion = 2.2.0;
 			};
 		};
+		044A6BA92C346EF200F6A1E6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -391,6 +403,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 044433082C208293008506BE /* XCRemoteSwiftPackageReference "OAuthSwift" */;
 			productName = OAuthSwift;
+		};
+		044A6BAA2C346EF200F6A1E6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 044A6BA92C346EF200F6A1E6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
