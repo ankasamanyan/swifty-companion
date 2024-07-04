@@ -1,4 +1,10 @@
 //
+//  OAuth2Handler.swift
+//  swifty-companion
+//
+//  Created by Anait Kasamanian on 17.06.24.
+//
+
 import OAuthSwift
 import Foundation
 import SwiftUI

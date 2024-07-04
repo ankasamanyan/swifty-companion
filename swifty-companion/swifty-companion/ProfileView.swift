@@ -13,8 +13,9 @@ struct ProfileView: View {
     @State private var errorMessage: String?
     
     var body: some View {
-        VStack {
-            ZStack {
+        ScrollView {
+            VStack {
+                ZStack {
                     Color.indigo
                         .opacity(0.89)
                         .frame(height:400)
@@ -23,7 +24,7 @@ struct ProfileView: View {
                     
                     VStack {
                         if let user = user {
-                            if let imageUrl = user.image?.link {
+                            if let imageUrl = user.image.link {
                                 KFImage(URL(string: imageUrl))
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -41,38 +42,83 @@ struct ProfileView: View {
                                     .shadow(radius: 10)
                             }
                             
-                            Text("\(user.usualFullName)")
+                            Text("\(user.displayname)")
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
-                                .padding(5)
                             
                             Text("@\(user.login)")
                                 .font(.title3)
                                 .foregroundStyle(.white.opacity(0.8))
+                                .padding(5)
+                            Text("✉️: \(user.email)")
+                                .font(.title3)
+                                .foregroundStyle(.white.opacity(0.8))
+                            Text("Wallet points: \(user.wallet)")
+                                .font(.title3)
+                                .foregroundStyle(.white.opacity(0.8))
+                           
+                        }
                     }
-                }
                     .foregroundColor(.white)
                     .navigationBarBackButtonHidden(true)
+                }
+                .offset(y: -59)
+                
+                ZStack {
+                    //progress bar for the lvl
+                    Color(.indigo)
+                        .opacity(0.89)
+                        .frame(width: 380, height: 80)
+                        .clipShape(.capsule)
+                    VStack {
+                        Text ("Level: \(String(format: "%.2f", user?.cursusUsers[1].level ?? 0.0))")
+                            .foregroundColor(.white)
+                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    }
+                    
+                }
+                .padding(.bottom, 20)
+                
+                HStack {
+                    ZStack {
+                        Color(.indigo)
+                            .opacity(0.89)
+                            .frame(width: 180, height: 100)
+                            .clipShape(.rect(cornerRadius: 15))
+                    }
+                    
+                    ZStack {
+                        Color(.indigo)
+                            .opacity(0.89)
+                            .frame(width: 180, height: 100)
+                            .clipShape(.rect(cornerRadius: 15))
+                    }
+                }
+                .padding(.bottom, 20)
+                
+                ZStack {
+                    Color(.indigo)
+                        .opacity(0.89)
+                        .frame(width: 370, height: 200)
+                        .clipShape(.rect(cornerRadius: 15))
+                }
+                
+                Spacer()
+                
             }
-            .offset(y: -30)
-            Spacer()
-        }
-        .onAppear {
-            APIClient.shared.fetchUserData { result in
-                switch result {
-                case .success(let user):
-                    self.user = user
-                case .failure(let error):
-                    print("\n There was an error here \n")
-                    self.errorMessage = error.localizedDescription
+            .onAppear {
+                APIClient.shared.fetchUserData { result in
+                    switch result {
+                    case .success(let user):
+                        self.user = user
+                    case .failure(let error):
+                        print("\n There was an error here \n")
+                        self.errorMessage = error.localizedDescription
+                    }
                 }
             }
         }
-    }
-    private struct sizes{
-        static let maxHeight: CGFloat = 60
-        static let maxWidth: CGFloat = 40
     }
 }
 
