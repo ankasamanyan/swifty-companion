@@ -21,7 +21,7 @@ class APIClient {
         }
     }
     
-    func fetchUserData(completion: @escaping (Result<User, Error>) -> Void) {
+    func fetchMyUserData(completion: @escaping (Result<User, Error>) -> Void) {
         OAuth2Handler().refreshTokenIfNeeded { success in
             guard success, let oauthswift = self.oauthswift else {
                 completion(.failure(NSError(domain: "OAuthSwiftError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Token refresh failed"])))
