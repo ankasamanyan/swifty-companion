@@ -8,10 +8,14 @@ struct ProfileView: View {
     var body: some View {
         ScrollView {
             VStack {
+                ProfileImageView(imageUrl: user?.image.link)
+                    .padding(.top, 20)
                 HeaderView(user: user)
-                InfoView(user: user)
-                    .padding(.bottom, 20)
-                AdditionalInfoView()
+//                SkillsView(user: user)
+                
+//                InfoView(user: user)
+//                    .padding(.bottom, 20)
+//                AdditionalInfoView()
                 Spacer()
             }
             .onAppear {
@@ -26,7 +30,10 @@ struct ProfileView: View {
                 }
             }
         }
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(false)
+        .navigationTitle("Profile")
+        .foregroundColor(.indigo)
+//        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -35,8 +42,6 @@ struct HeaderView: View {
     
     var body: some View {
         VStack {
-            ProfileImageView(imageUrl: user?.image.link)
-                .padding(.top, 20)
 
             if let user = user {
                 Text(user.displayname)
@@ -121,46 +126,52 @@ struct LevelView: View {
     }
 }
 
-struct InfoView: View {
-    var user: User?
-    
-    var body: some View {
-        HStack {
-            InfoBox(text: "\(String(describing: user?.campus[0].name ?? ""))")
-            InfoBox(text: "Additional Info")
-        }
-    }
-}
 
-struct InfoBox: View {
-    var text: String
-    
-    var body: some View {
-        ZStack {
-            Color.white
-                .opacity(0.89)
-                .frame(width: 180, height: 100)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .shadow(radius: 10)
-            
-            Text(text)
-                .multilineTextAlignment(.center)
-                .foregroundColor(.black)
-        }
-    }
-}
+//struct SkillsView: View {
+//    var user
+//}
 
-struct AdditionalInfoView: View {
-    var body: some View {
-        ZStack {
-            Color.white
-                .opacity(0.89)
-                .frame(width: 370, height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .shadow(radius: 10)
-        }
-    }
-}
+
+//struct InfoView: View {
+//    var user: User?
+//    
+//    var body: some View {
+//        HStack {
+//            InfoBox(text: "\(String(describing: user?.campus[0].name ?? ""))")
+//            InfoBox(text: "Additional Info")
+//        }
+//    }
+//}
+//
+//struct InfoBox: View {
+//    var text: String
+//    
+//    var body: some View {
+//        ZStack {
+//            Color.white
+//                .opacity(0.89)
+//                .frame(width: 180, height: 100)
+//                .clipShape(RoundedRectangle(cornerRadius: 15))
+//                .shadow(radius: 10)
+//            
+//            Text(text)
+//                .multilineTextAlignment(.center)
+//                .foregroundColor(.black)
+//        }
+//    }
+//}
+
+//struct AdditionalInfoView: View {
+//    var body: some View {
+//        ZStack {
+//            Color.white
+//                .opacity(0.89)
+//                .frame(width: 370, height: 200)
+//                .clipShape(RoundedRectangle(cornerRadius: 15))
+//                .shadow(radius: 10)
+//        }
+//    }
+//}
 
 struct SectionView<Content: View>: View {
     var title: String
