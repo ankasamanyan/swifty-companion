@@ -30,10 +30,7 @@ struct ProfileView: View {
                 }
             }
         }
-//        .navigationBarBackButtonHidden(false)
         .navigationTitle("Profile")
-        .foregroundColor(.indigo)
-//        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
