@@ -15,7 +15,7 @@ struct SearchView: View {
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.65), Color.indigo.opacity(0.8)]),
+            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.5), Color.indigo.opacity(0.8)]),
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
                 .frame(height: 350)
@@ -31,8 +31,9 @@ struct SearchView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text("Let's find your peers!")
+                        .padding(.vertical)
                     Image(systemName: "magnifyingglass")
-                        .foregroundColor(.white.opacity(0.4))
+                        .foregroundColor(.indigo.opacity(0.4))
                         .padding(.horizontal, 15)
                         .font(.system(size: 65)).bold()
                 }
@@ -56,12 +57,14 @@ struct SearchView: View {
                 Text("Hi, \(user?.login ?? "Intra user")!")
                     .padding(.leading, 30)
                     .font(.title)
-                    .foregroundColor(.black.opacity(0.6))
+                    .foregroundColor(.indigo)
                     .padding(.top, 20)
                 Spacer()
-                SearchProfileImageView(imageUrl: user?.image.link)
-                    .padding(.trailing, 20)
-                    .padding(.top, 20)
+                NavigationLink(destination: ProfileView()) {
+                    SearchProfileImageView(imageUrl: user?.image.link)
+                        .padding(.trailing, 20)
+                        .padding(.top, 20)
+                       }
             }
         }
         .onAppear {
@@ -101,7 +104,7 @@ struct Pattern42: View {
                 }
             }
             .fill(ImagePaint(image: Image(systemName: "42.square.fill"), scale:  2))
-            .foregroundColor(.white).opacity(0.7)
+            .foregroundColor(.white).opacity(0.5)
         }
     }
 }

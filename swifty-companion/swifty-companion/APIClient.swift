@@ -33,7 +33,7 @@ class APIClient {
                 case .success(let response):
                     do {
                         let user = try JSONDecoder().decode(User.self, from: response.data)
-                        print(user.cursusUsers[1].level)
+                        print(user.cursusUsers[1].level)                        // ALTER THE CURSUS THINGY
                         completion(.success(user))
                     } catch let jsonError {
                         print("JSON decoding error: \(jsonError)")

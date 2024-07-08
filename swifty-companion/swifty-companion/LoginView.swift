@@ -22,7 +22,8 @@ struct LoginView: View {
                                endPoint: .bottomTrailing)
                     .edgesIgnoringSafeArea(.all)
                 Pattern42()
-                    .edgesIgnoringSafeArea(.all).opacity(0.2)
+                    .edgesIgnoringSafeArea(.all)
+                    .opacity(0.2)
                 
                 VStack {
                     Text("Welcome to Swifty-Companion!")
