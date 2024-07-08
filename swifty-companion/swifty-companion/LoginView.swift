@@ -15,12 +15,17 @@ struct LoginView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.indigo
-                    .opacity(0.97)
+                Color.pink.opacity(0.42)
+                    .ignoresSafeArea(.all)
+                LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.5), Color.indigo]),
+                               startPoint: .topLeading,
+                               endPoint: .bottomTrailing)
                     .edgesIgnoringSafeArea(.all)
+                Pattern42()
+                    .edgesIgnoringSafeArea(.all).opacity(0.2)
                 
                 VStack {
-                    Text("Welcome to Swifty Companion!")
+                    Text("Welcome to Swifty-Companion!")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -42,17 +47,9 @@ struct LoginView: View {
                             .foregroundColor(.indigo)
                             .padding(.horizontal, 70)
                             .padding(.vertical, 20)
-                            .background(Color.white.opacity(0.8))
+                            .background(Color.white)
                             .clipShape(.capsule)
                         
-//                        Text("Log In With 42")
-//                            .font(.title2)
-//                            .fontWeight(.semibold)
-//                            .foregroundColor(.indigo)
-//                            .padding(.horizontal, 70)
-//                            .padding(.vertical, 20)
-//                            .background(Color.white.opacity(0.8))
-//                            .clipShape(.capsule)
                     }
                     .padding(.bottom, 50)
                 }
@@ -64,7 +61,7 @@ struct LoginView: View {
                 }
             }
             .navigationDestination(isPresented: $navigateToDetail) {
-                ProfileView()
+                SearchView()
             }
         }
     }

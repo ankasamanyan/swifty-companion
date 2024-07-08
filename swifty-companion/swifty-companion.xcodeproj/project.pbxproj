@@ -17,6 +17,7 @@
 		044A6BAB2C346EF200F6A1E6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 044A6BAA2C346EF200F6A1E6 /* Kingfisher */; };
 		04DF888C2C2AD353003C8341 /* OAuth2Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF888B2C2AD353003C8341 /* OAuth2Handler.swift */; };
 		04DF888E2C2AD35B003C8341 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF888D2C2AD35B003C8341 /* APIClient.swift */; };
+		04E4F79C2C3B4D1900889756 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F79B2C3B4D1900889756 /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		04DF888B2C2AD353003C8341 /* OAuth2Handler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2Handler.swift; sourceTree = "<group>"; };
 		04DF888D2C2AD35B003C8341 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		04DF888F2C2ADF39003C8341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		04E4F79B2C3B4D1900889756 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				04DF888B2C2AD353003C8341 /* OAuth2Handler.swift */,
 				04DF888D2C2AD35B003C8341 /* APIClient.swift */,
 				044433062C2081B1008506BE /* ProfileView.swift */,
+				04E4F79B2C3B4D1900889756 /* SearchView.swift */,
 				044432FA2C207816008506BE /* Assets.xcassets */,
 				044432FC2C207816008506BE /* Preview Content */,
 			);
@@ -168,6 +171,7 @@
 				044432F72C207814008506BE /* swifty_companionApp.swift in Sources */,
 				044433052C2080D9008506BE /* LoginView.swift in Sources */,
 				04DF888C2C2AD353003C8341 /* OAuth2Handler.swift in Sources */,
+				04E4F79C2C3B4D1900889756 /* SearchView.swift in Sources */,
 				04DF888E2C2AD35B003C8341 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
