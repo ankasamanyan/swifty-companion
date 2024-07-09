@@ -15,13 +15,7 @@ struct SearchView: View {
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.5), Color.indigo.opacity(0.8)]),
-                           startPoint: .topLeading,
-                           endPoint: .bottomTrailing)
-                .frame(height: 350)
-                .clipShape(RoundedRectangle(cornerRadius: 30))
-                .edgesIgnoringSafeArea(.top)
-
+            BackgroundGradient()
             Pattern42()
                 .frame(height: 350)
                 .clipShape(RoundedRectangle(cornerRadius: 25))
@@ -29,54 +23,14 @@ struct SearchView: View {
                 .edgesIgnoringSafeArea(.top)
             
             VStack(alignment: .leading) {
-                HStack {
-                    Text("Let's find your peers!")
-                        .padding(.vertical)
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.indigo.opacity(0.4))
-                        .padding(.horizontal, 15)
-                        .font(.system(size: 65)).bold()
-                }
-                .font(.system(size: 42).bold())
-                .padding(.top, 90)
-                .padding(.leading, 30)
-                .foregroundColor(.white)
-                
-                HStack {
-                    TextField("Search", text: $searchText)
-                        .padding(15)
-                        .padding(.horizontal, 15)
-                        .background(Color(.systemGray6))
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                }
-                .padding(.horizontal, 25)
-                
+                SearchHeader()
+                SearchField(searchText: $searchText)
                 Spacer()
             }
-            HStack {
-                Text("Hi, \(user?.login ?? "Intra user")!")
-                    .padding(.leading, 30)
-                    .font(.title)
-                    .foregroundColor(.indigo)
-                    .padding(.top, 20)
-                Spacer()
-                NavigationLink(destination: ProfileView()) {
-                    SearchProfileImageView(imageUrl: user?.image.link)
-                        .padding(.trailing, 20)
-                        .padding(.top, 20)
-                       }
-            }
+            UserProfileView(user: user)
         }
         .onAppear {
-            APIClient.shared.fetchMyUserData { result in
-                switch result {
-                case .success(let user):
-                    self.user = user
-                case .failure(let error):
-                    print("\n There was an error here \n")
-                    self.errorMessage = error.localizedDescription
-                }
-            }
+            fetchUserData()
         }
         .navigationBarBackButtonHidden(true)
         .tint(.indigo)
@@ -88,23 +42,80 @@ struct SearchView: View {
                  .opacity(0.87)
 
     }
+    
+    private func fetchUserData() {
+        APIClient.shared.fetchMyUserData { result in
+            switch result {
+            case .success(let user):
+                self.user = user
+            case .failure(let error):
+                print("\n There was an error here \n")
+                self.errorMessage = error.localizedDescription
+            }
+        }
+    }
 }
 
-struct Pattern42: View {
+struct BackgroundGradient: View {
     var body: some View {
-        GeometryReader { geometry in
-            let size = geometry.size
-            let magnifyingGlassSize: CGFloat = 50
+        LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.5), Color.indigo.opacity(0.8)]),
+                       startPoint: .topLeading,
+                       endPoint: .bottomTrailing)
+            .frame(height: 350)
+            .clipShape(RoundedRectangle(cornerRadius: 30))
+            .edgesIgnoringSafeArea(.top)
+    }
+}
 
-            Path { path in
-                for x in stride(from: 0, to: size.width, by: magnifyingGlassSize) {
-                    for y in stride(from: 0, to: size.height, by: magnifyingGlassSize) {
-                        path.addRect(CGRect(x: x, y: y, width: magnifyingGlassSize, height: magnifyingGlassSize))
-                    }
-                }
-            }
-            .fill(ImagePaint(image: Image(systemName: "42.square.fill"), scale:  2))
-            .foregroundColor(.white).opacity(0.5)
+struct SearchHeader: View {
+    var body: some View {
+        HStack {
+            Text("Let's find your peers!")
+                .padding(.vertical)
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.indigo.opacity(0.4))
+                .padding(.horizontal, 15)
+                .font(.system(size: 65)).bold()
+        }
+        .font(.system(size: 42).bold())
+        .padding(.top, 90)
+        .padding(.leading, 30)
+        .foregroundColor(.white)
+    }
+}
+
+struct SearchField: View {
+    @Binding var searchText: String
+    
+    
+    var body: some View {
+        HStack {
+            TextField("Search", text: $searchText)
+                .padding(15)
+                .padding(.horizontal, 15)
+                .background(Color(.systemGray6))
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+        }
+        .padding(.horizontal, 25)
+    }
+}
+
+struct UserProfileView: View {
+    var user: User?
+    
+    var body: some View {
+        HStack {
+            Text("Hi, \(user?.login ?? "Intra user")!")
+                .padding(.leading, 30)
+                .font(.title)
+                .foregroundColor(.indigo)
+                .padding(.top, 20)
+            Spacer()
+            NavigationLink(destination: ProfileView()) {
+                SearchProfileImageView(imageUrl: user?.image.link)
+                    .padding(.trailing, 20)
+                    .padding(.top, 20)
+                   }
         }
     }
 }
@@ -131,6 +142,27 @@ struct SearchProfileImageView: View {
         }
     }
 }
+
+struct Pattern42: View {
+    var body: some View {
+        GeometryReader { geometry in
+            let size = geometry.size
+            let magnifyingGlassSize: CGFloat = 50
+
+            Path { path in
+                for x in stride(from: 0, to: size.width, by: magnifyingGlassSize) {
+                    for y in stride(from: 0, to: size.height, by: magnifyingGlassSize) {
+                        path.addRect(CGRect(x: x, y: y, width: magnifyingGlassSize, height: magnifyingGlassSize))
+                    }
+                }
+            }
+            .fill(ImagePaint(image: Image(systemName: "42.square.fill"), scale:  2))
+            .foregroundColor(.white).opacity(0.5)
+        }
+    }
+}
+
+
 
 #Preview {
     SearchView()
