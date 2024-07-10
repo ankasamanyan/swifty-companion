@@ -19,10 +19,10 @@ struct ProfileView: View {
                 ProfileImageView(imageUrl: user?.image.link)
                     .padding(.top, 20)
                 ProfileHeaderView(user: user)
-
-                if let projects = user?.projectsUsers.map({ $0.project }) {
-                    ProjectCarouselView(projects: projects)
-                }
+                
+                    if let projects = user?.projectsUsers.map({ $0.project }) {
+                        ProjectCarouselView(projects: projects)
+                    }
                 
                 Spacer()
             }
@@ -92,22 +92,25 @@ struct ProjectCarouselView: View {
     var projects: [Project]
 
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack() {
-                ForEach(projects, id: \.name) { project in
-                    ProjectView(project: project)
-                        .frame(width: UIScreen.main.bounds.width)
-                        .scrollTransition { content, phase in
-                            content
-                                .opacity(phase.isIdentity ? 1 : 0.5)
-                                .scaleEffect(phase.isIdentity ? 1 : 0.7)
-                        }
+        SectionView (title: "Projects") {
+            ScrollView(.horizontal) {
+                
+                HStack() {
+                    ForEach(projects, id: \.name) { project in
+                        ProjectView(project: project)
+                            .frame(width: UIScreen.main.bounds.width - 30)
+                            .scrollTransition { content, phase in
+                                content
+                                    .opacity(phase.isIdentity ? 1 : 0.5)
+                                    .scaleEffect(phase.isIdentity ? 1 : 0.7)
+                            }
+                    }
                 }
+                .scrollTargetLayout()
             }
-            .scrollTargetLayout()
+            .scrollTargetBehavior(.viewAligned)
+            
         }
-//        .contentMargins(0, for: .scrollContent)
-        .scrollTargetBehavior(.viewAligned)
     }
 }
 
