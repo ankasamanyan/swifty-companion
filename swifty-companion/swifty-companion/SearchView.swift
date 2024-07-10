@@ -37,8 +37,8 @@ struct SearchView: View {
         Image("searchDrawing")
                  .resizable()
                  .scaledToFit()
-                 .frame(width: 400, height: 400)
-                 .padding(.bottom, 42)
+                 .frame(width: 420, height: 400)
+                 .padding(.bottom, 50)
                  .opacity(0.87)
 
     }
@@ -107,7 +107,7 @@ struct UserProfileView: View {
         HStack {
             Text("Hi, \(user?.login ?? "Intra user")!")
                 .padding(.leading, 30)
-                .font(.title)
+                .font(.title2)
                 .foregroundColor(.indigo)
                 .padding(.top, 20)
             Spacer()
