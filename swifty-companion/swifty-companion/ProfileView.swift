@@ -1,13 +1,6 @@
-//
-//  SearchView.swift
-//  swifty-companion
-//
-//  Created by Anait Kasamanian on 08.07.24.
-//
-
-
 import SwiftUI
 import Kingfisher
+import Charts
 
 struct ProfileView: View {
     @State private var user: User?
@@ -19,11 +12,15 @@ struct ProfileView: View {
                 ProfileImageView(imageUrl: user?.image.link)
                     .padding(.top, 20)
                 ProfileHeaderView(user: user)
-                
-                    if let projects = user?.projectsUsers.map({ $0.project }) {
-                        ProjectCarouselView(projects: projects)
-                    }
-                
+
+                if let skills = user?.cursusUsers[1].skills {
+                    SkillChartView(skills: skills)
+                }
+
+                if let projects = user?.projectsUsers.map({ $0.project }) {
+                    ProjectCarouselView(projects: projects)
+                }
+
                 Spacer()
             }
             .onAppear {
@@ -95,10 +92,10 @@ struct ProjectCarouselView: View {
         SectionView (title: "Projects") {
             ScrollView(.horizontal) {
                 
-                HStack() {
+                HStack {
                     ForEach(projects, id: \.name) { project in
                         ProjectView(project: project)
-                            .frame(width: UIScreen.main.bounds.width - 30)
+                            .frame(width: UIScreen.main.bounds.width - 35)
                             .scrollTransition { content, phase in
                                 content
                                     .opacity(phase.isIdentity ? 1 : 0.5)
@@ -141,6 +138,62 @@ struct ProjectView: View {
         .clipShape(RoundedRectangle(cornerRadius: 25))
         .padding()
     }
+}
+
+struct SkillChartView: View {
+    var skills: [Skill]
+
+    var body: some View {
+       let skillData = skills.map { ToyShape(type: $0.name, count: $0.level)}
+
+       SectionView(title: "Skills") {
+           Chart {
+               ForEach(skillData) { skill in
+                   BarMark(
+                       x: .value("Skill", skill.type),
+                       y: .value("Level", skill.count)
+                   )
+                   .annotation(position: .bottom, alignment: .leading) {
+                       Text(skill.type)
+                           .foregroundColor(.indigo)
+                           .font(.caption)
+                           .rotationEffect(.degrees(45), anchor: .leading)
+                           .padding(.horizontal)
+                   }
+                   .annotation(position: .top, alignment: .leading) {
+                       Text( String(format: "%.2f", skill.count))
+                           .foregroundColor(.indigo)
+                           .font(.caption)
+                       
+                   }
+               }
+           }
+//           .chartForegroundStyleScale([
+//               "Green": .green, "Purple": .purple, "Pink": .pink, "Yellow": .yellow
+//           ])
+           .chartXAxis {
+               AxisMarks { value in
+                   AxisValueLabel {
+                       if let text = value.as(String.self) {
+                           Text(text)
+                               .multilineTextAlignment(.trailing)
+//                               .rotationEffect(.degrees(45))
+                               .foregroundColor(.white)
+                       }
+                   }
+               }
+           }
+           .frame(height: 300)
+           .padding()
+
+       }
+   }
+}
+
+struct ToyShape: Identifiable {
+    var type: String
+    var count: Double
+    var id = UUID()
 }
 
 struct ProfileImageView: View {
