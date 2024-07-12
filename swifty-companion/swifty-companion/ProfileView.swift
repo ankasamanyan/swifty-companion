@@ -90,12 +90,11 @@ struct ProjectCarouselView: View {
 
     var body: some View {
         SectionView (title: "Projects") {
-            ScrollView(.horizontal) {
+            ScrollView(.vertical) {
                 
-                HStack {
+                VStack {
                     ForEach(projects, id: \.name) { project in
                         ProjectView(project: project)
-                            .frame(width: UIScreen.main.bounds.width - 35)
                             .scrollTransition { content, phase in
                                 content
                                     .opacity(phase.isIdentity ? 1 : 0.5)
@@ -105,9 +104,9 @@ struct ProjectCarouselView: View {
                 }
                 .scrollTargetLayout()
             }
-            .scrollTargetBehavior(.viewAligned)
-            
+            .frame(height: 350)
         }
+            .scrollTargetBehavior(.viewAligned)
     }
 }
 
@@ -136,13 +135,21 @@ struct ProjectView: View {
                 .opacity(0.1)
         }
         .clipShape(RoundedRectangle(cornerRadius: 25))
-        .padding()
+        
     }
 }
 
 struct SkillChartView: View {
     var skills: [Skill]
-
+    
+    private func truncatedSkillName(_ name: String, length: Int) -> String {
+          if name.count > length {
+              let endIndex = name.index(name.startIndex, offsetBy: length)
+              return String(name[..<endIndex]) + "..."
+          }
+          return name
+      }
+    
     var body: some View {
        let skillData = skills.map { ToyShape(type: $0.name, count: $0.level)}
 
@@ -154,11 +161,11 @@ struct SkillChartView: View {
                        y: .value("Level", skill.count)
                    )
                    .annotation(position: .bottom, alignment: .leading) {
-                       Text(skill.type)
-                           .foregroundColor(.indigo)
+                       Text(truncatedSkillName(skill.type, length: 15))
                            .font(.caption)
+                           .foregroundColor(.indigo)
                            .rotationEffect(.degrees(45), anchor: .leading)
-                           .padding(.horizontal)
+                           .padding(.leading, 10)
                    }
                    .annotation(position: .top, alignment: .leading) {
                        Text( String(format: "%.2f", skill.count))
@@ -166,25 +173,12 @@ struct SkillChartView: View {
                            .font(.caption)
                        
                    }
+
                }
            }
-//           .chartForegroundStyleScale([
-//               "Green": .green, "Purple": .purple, "Pink": .pink, "Yellow": .yellow
-//           ])
-           .chartXAxis {
-               AxisMarks { value in
-                   AxisValueLabel {
-                       if let text = value.as(String.self) {
-                           Text(text)
-                               .multilineTextAlignment(.trailing)
-//                               .rotationEffect(.degrees(45))
-                               .foregroundColor(.white)
-                       }
-                   }
-               }
-           }
+           .chartXAxis(.hidden)
            .frame(height: 300)
-           .padding()
+        
 
        }
    }
