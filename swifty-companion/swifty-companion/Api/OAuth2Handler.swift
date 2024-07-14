@@ -15,7 +15,6 @@ class OAuth2Handler: ObservableObject {
     var oauthswift: OAuth2Swift?
     
     init() {
-        // Initialize OAuth2Swift with 42 API credentials
         guard let plistPath = Bundle.main.path(forResource: "Credentials", ofType: "plist") else {
             fatalError("Credentials.plist file not found.")
         }
@@ -25,7 +24,6 @@ class OAuth2Handler: ObservableObject {
         do {
             let plistDictionary = try PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [String: Any]
             
-            // Get the UID and secret values from the Plist dictionary
             guard let clientID = plistDictionary?["CLIENT_ID"] as? String,
                   let clientSecret = plistDictionary?["CLIENT_SECRET"] as? String else {
                 fatalError("clientID and/or secret not found in plist file.")
@@ -38,8 +36,6 @@ class OAuth2Handler: ObservableObject {
                 accessTokenUrl: "https://api.intra.42.fr/oauth/token",
                 responseType: "code"
             )
-                
-//            print("OAuth2Swift initialized with clientID: \(clientID), clientSecret: \(clientSecret)")
                 
         } catch {
             fatalError("Error loading plist file: \(error)")
