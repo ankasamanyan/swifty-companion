@@ -15,10 +15,9 @@ struct ProfileView: View {
                     SkillView(skills: skills)
                 }
 
-                if let projects = user?.projectsUsers.map({ $0.project }) {
-                    ProjectCarouselView(projects: projects)
+                if let projectsUsers = user?.projectsUsers {
+                    ProjectCarouselView(projects: projectsUsers)
                 }
-
                 Spacer()
             }
             .onAppear {

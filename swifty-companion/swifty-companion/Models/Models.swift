@@ -124,13 +124,20 @@ struct FluffyVersions: Codable {
 
 
 // MARK: - Project
-struct Project: Codable {
+struct Project: Codable, Identifiable {
+    let id: Int
     let name: String
+    let status: Status?
+    let finalMark: Int?
 
     enum CodingKeys: String, CodingKey {
+        case id
         case name
+        case status
+        case finalMark = "final_mark"
     }
 }
+
 
 enum Status: String, Codable {
     case finished = "finished"
