@@ -19,7 +19,7 @@ struct UserProfileView: View {
                 .foregroundColor(.indigo)
                 .padding(.top, 20)
             Spacer()
-            NavigationLink(destination: ProfileView()) {
+            NavigationLink(destination: ProfileView(user: user)) {
                 SearchProfileImageView(imageUrl: user?.image.link)
                     .padding(.trailing, 20)
                     .padding(.top, 20)
