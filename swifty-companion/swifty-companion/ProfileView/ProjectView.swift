@@ -14,7 +14,7 @@ struct ProjectCarouselView: View {
     var body: some View {
         SectionView(title: "Projects") {
             ScrollView(.vertical) {
-                VStack {
+                VStack(spacing: 10) {
                     ForEach(projects) { projectUser in
                         ProjectView(projectUser: projectUser)
                             .scrollTransition { content, phase in
@@ -36,46 +36,61 @@ struct ProjectView: View {
     var projectUser: ProjectsUser
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             Color.pink.opacity(0.15)
             
             LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.5), Color.indigo.opacity(0.9)]),
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
                 .opacity(0.8)
-                .frame(height: 250)
-                .cornerRadius(25)
 
-            VStack(alignment: .leading) {
-                Text(projectUser.project.name)
-                    .font(.system(size: 25, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.top, 10)
-//                    .padding(.leading, 10)
-
-                if let status = projectUser.status {
-                    Text("Status: \(statusDescription(for: status))")
-                        .font(.system(size: 20))
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
-//                        .padding(.leading, 10)
+            HStack {
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Image(systemName: "star")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.yellow)
+                        
+                        Text(projectUser.project.name)
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+                    
+                    if let status = projectUser.status {
+                        HStack {
+                            Image(systemName: "timer")
+                                .font(.system(size: 18, weight: .semibold))
+                                .foregroundColor(.white).opacity(0.8)
+                            Text("\(statusDescription(for: status))")
+                                .font(.system(size: 18, weight: .semibold))
+                                .foregroundColor(.white).opacity(0.8)
+                                .padding(.leading, 3)
+                        }
+                        .padding(.leading, 3)
+                    }
+                    
                 }
+                    if let finalMark = projectUser.finalMark {
+                        HStack {
+                            Spacer()
+                            Text("\(finalMark)")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.white)
+                                .padding()
+                                .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                        }
+                        .padding(.leading, 10)
+                    }
 
-                if let finalMark = projectUser.finalMark {
-                    Text("Score: \(finalMark)")
-                        .font(.system(size: 20))
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
-//                        .padding(.leading, 10)
-                }
-
-                Spacer()
+//                Spacer()
             }
-            .padding()
+            .padding(.vertical)
+            .padding(.horizontal, 20)
             
             Pattern42()
                 .opacity(0.1)
         }
+        .frame(height: 130)
         .clipShape(RoundedRectangle(cornerRadius: 25))
     }
 
