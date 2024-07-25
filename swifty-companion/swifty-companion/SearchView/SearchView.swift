@@ -10,8 +10,7 @@ import Kingfisher
 
 struct SearchView: View {
     @State private var searchText = ""
-    @State private var user: User?
-    @State private var errorMessage: String?
+    var user: User?
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -29,9 +28,6 @@ struct SearchView: View {
             }
             UserProfileView(user: user)
         }
-        .onAppear {
-            fetchUserData()
-        }
         .navigationBarBackButtonHidden(true)
         .tint(.indigo)
         Image("searchDrawing")
@@ -40,19 +36,6 @@ struct SearchView: View {
                  .frame(width: 420, height: 400)
                  .padding(.bottom, 50)
                  .opacity(0.87)
-
-    }
-    
-    private func fetchUserData() {
-        APIClient.shared.fetchMyUserData { result in
-            switch result {
-            case .success(let user):
-                self.user = user
-            case .failure(let error):
-                print("\n There was an error here \n")
-                self.errorMessage = error.localizedDescription
-            }
-        }
     }
 }
 

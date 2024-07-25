@@ -28,6 +28,7 @@ struct ProjectCarouselView: View {
             }
             .frame(height: 350)
         }
+        .padding(.vertical)
         .scrollTargetBehavior(.viewAligned)
     }
 }
@@ -55,7 +56,7 @@ struct ProjectView: View {
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.white)
                     }
-                    
+                    Divider()
                     if let status = projectUser.status {
                         HStack {
                             Image(systemName: "timer")
@@ -77,12 +78,13 @@ struct ProjectView: View {
                                 .font(.system(size: 20, weight: .bold))
                                 .foregroundColor(.white)
                                 .padding()
-                                .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                                .overlay(Circle().stroke(
+                                    LinearGradient(gradient: Gradient(colors: [Color.indigo.opacity(0.9), Color.blue.opacity(0.5), Color.green.opacity(0.7)]),
+                                                   startPoint: .topLeading,
+                                                   endPoint: .bottomTrailing), lineWidth: 3))
                         }
                         .padding(.leading, 10)
                     }
-
-//                Spacer()
             }
             .padding(.vertical)
             .padding(.horizontal, 20)

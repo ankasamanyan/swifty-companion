@@ -11,7 +11,7 @@ struct ProfileView: View {
                     .padding(.top, 20)
                 ProfileHeaderView(user: user)
 
-                if let skills = user?.cursusUsers[1].skills {
+                if let skills = user?.cursusUsers[1].skills {   // plz fix this at some point
                     SkillView(skills: skills)
                 }
 
@@ -20,24 +20,9 @@ struct ProfileView: View {
                 }
                 Spacer()
             }
-//            .onAppear {
-//                fetchUserData()
-//            }
         }
         .navigationTitle("Profile")
     }
-    
-//    private func fetchUserData() {
-//        APIClient.shared.fetchMyUserData { result in
-//            switch result {
-//            case .success(let user):
-//                self.user = user
-//            case .failure(let error):
-//                print("\n There was an error here \n")
-//                self.errorMessage = error.localizedDescription
-//            }
-//        }
-//    }
 }
 
 

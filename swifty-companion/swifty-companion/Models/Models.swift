@@ -8,7 +8,8 @@
 import Foundation
 
 // MARK: - User
-struct User: Codable {
+struct User: Codable, Identifiable {
+    let id: Int
     let email, login, displayname, kind: String
     let image: UserImage
     let phone: String?
@@ -20,24 +21,21 @@ struct User: Codable {
     let campus: [Campus]
 
     enum CodingKeys: String, CodingKey {
-        case email, login, displayname, kind, image
+        case id, email, login, displayname, kind, image, phone
         case correctionPoint = "correction_point"
         case location, wallet
         case cursusUsers = "cursus_users"
         case projectsUsers = "projects_users"
         case campus
-        case phone
     }
 }
 
-
-
 // MARK: - CursusUser
-struct CursusUser: Codable {
+struct CursusUser: Codable, Identifiable {
+    let id: Int
     let level: Double
     let skills: [Skill]
     let blackholedAt: String?
-    let id: Int
     let beginAt: String
     let endAt: String?
     let cursusID: Int
@@ -46,9 +44,8 @@ struct CursusUser: Codable {
     let cursus: Cursus
 
     enum CodingKeys: String, CodingKey {
-        case level, skills
+        case id, level, skills
         case blackholedAt = "blackholed_at"
-        case id
         case beginAt = "begin_at"
         case endAt = "end_at"
         case cursusID = "cursus_id"
@@ -60,7 +57,7 @@ struct CursusUser: Codable {
 }
 
 // MARK: - Cursus
-struct Cursus: Codable {
+struct Cursus: Codable, Identifiable {
     let id: Int
     let createdAt, name, slug, kind: String
 
@@ -72,12 +69,11 @@ struct Cursus: Codable {
 }
 
 // MARK: - Skill
-struct Skill: Codable {
+struct Skill: Codable, Identifiable {
     let id: Int
     let name: String
     let level: Double
 }
-
 
 // MARK: - UserImage
 struct UserImage: Codable {
@@ -89,8 +85,6 @@ struct UserImage: Codable {
 struct PurpleVersions: Codable {
     let large, medium, small, micro: String?
 }
-
-
 
 // MARK: - ProjectsUser
 struct ProjectsUser: Codable, Identifiable {
@@ -117,12 +111,6 @@ struct ProjectsUser: Codable, Identifiable {
     }
 }
 
-// MARK: - FluffyVersions
-struct FluffyVersions: Codable {
-    let large, small: URL?
-}
-
-
 // MARK: - Project
 struct Project: Codable, Identifiable {
     let id: Int
@@ -131,14 +119,12 @@ struct Project: Codable, Identifiable {
     let finalMark: Int?
 
     enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case status
+        case id, name, status
         case finalMark = "final_mark"
     }
 }
 
-
+// MARK: - Status Enum
 enum Status: String, Codable {
     case finished = "finished"
     case inProgress = "in_progress"
@@ -149,11 +135,10 @@ enum Status: String, Codable {
 }
 
 // MARK: - Campus
-struct Campus: Codable {
+struct Campus: Codable, Identifiable {
     let id: Int
     let name: String
 
-    
     enum CodingKeys: String, CodingKey {
         case id, name
     }

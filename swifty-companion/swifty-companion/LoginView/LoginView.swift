@@ -9,8 +9,10 @@ import OAuthSwift
 import SwiftUI
 
 struct LoginView: View {
+    @State private var user: User?
     @StateObject var oauth2Handler = OAuth2Handler()
     @State private var navigateToDetail = false
+    @State private var errorMessage: String?
 
     var body: some View {
         NavigationStack {
@@ -60,12 +62,23 @@ struct LoginView: View {
                 if isAuthenticated {
                     navigateToDetail = true
                 }
+                fetchUserData()
             }
             .navigationDestination(isPresented: $navigateToDetail) {
-                SearchView()
+                SearchView(user: user)
             }
         }
     }
+        private func fetchUserData() {
+            APIClient.shared.fetchMyUserData { result in
+                switch result {
+                case .success(let user):
+                    self.user = user
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                }
+            }
+        }
 }
 
 #Preview {

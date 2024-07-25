@@ -11,7 +11,6 @@ import SwiftUI
 struct SearchField: View {
     @Binding var searchText: String
     
-    
     var body: some View {
         HStack {
             TextField("Search", text: $searchText)
