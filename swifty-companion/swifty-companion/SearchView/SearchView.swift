@@ -10,7 +10,10 @@ import Kingfisher
 
 struct SearchView: View {
     @State private var searchText = ""
-    var user: User?
+    @State private var users: [UserPreview] = []
+    @State private var isLoading = false
+    @State private var errorLoading = false
+    var myUser: User?
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -23,10 +26,31 @@ struct SearchView: View {
             
             VStack(alignment: .leading) {
                 SearchHeader()
-                SearchField(searchText: $searchText)
+                SearchField(searchText: $searchText, onSearchTextChanged: { newValue in
+                    if !newValue.isEmpty {
+                        fetchUsers(loginPrefix: newValue)
+                    } else {
+                        users = []
+                    }
+                })
+            
                 Spacer()
+                if isLoading {
+                    ProgressView()
+                } else if errorLoading {
+                    Text("Error loading data")
+                        .foregroundColor(.red)
+                } else if !users.isEmpty {
+                    List(users) { user in
+                        SearchProfilePreview(user: user)
+                    }
+                }
+                else if !searchText.isEmpty && users.isEmpty {
+                    Text("There is no such user")
+                }
             }
-            UserProfileView(user: user)
+
+            UserProfileView(user: myUser)
         }
         .navigationBarBackButtonHidden(true)
         .tint(.indigo)
@@ -37,8 +61,20 @@ struct SearchView: View {
                  .padding(.bottom, 50)
                  .opacity(0.87)
     }
-}
 
-#Preview {
-    SearchView()
+    private func fetchUsers(loginPrefix: String) {
+        isLoading = true
+        errorLoading = false
+        APIClient.shared.fetchUsers(prefix: loginPrefix) { result in
+            DispatchQueue.main.async {
+                self.isLoading = false
+                switch result {
+                case .success(let fetchedUsers):
+                    self.users = fetchedUsers
+                case .failure:
+                    self.errorLoading = true
+                }
+            }
+        }
+    }
 }

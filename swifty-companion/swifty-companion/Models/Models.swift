@@ -30,6 +30,25 @@ struct User: Codable, Identifiable {
     }
 }
 
+// MARK: - UserPreview
+struct UserPreview: Codable, Identifiable {
+    var id:             Int
+      var name:           String
+      var surname:        String
+      var nickname:       String
+      var images:         UserImage
+      var displayname:    String
+      
+      enum CodingKeys: String, CodingKey {
+          case id
+          case name       = "first_name"
+          case surname    = "last_name"
+          case nickname   = "login"
+          case images     = "image"
+          case displayname
+      }
+}
+
 // MARK: - CursusUser
 struct CursusUser: Codable, Identifiable {
     let id: Int

@@ -65,7 +65,7 @@ struct LoginView: View {
                 fetchUserData()
             }
             .navigationDestination(isPresented: $navigateToDetail) {
-                SearchView(user: user)
+                SearchView(myUser: user)
             }
         }
     }

@@ -45,4 +45,30 @@ class APIClient {
             }
         }
     }
+    
+    func fetchUsers(prefix: String, completion: @escaping (Result<[UserPreview], Error>) -> Void) {
+           OAuth2Handler().refreshTokenIfNeeded { success in
+               guard success, let oauthswift = self.oauthswift else {
+                   completion(.failure(NSError(domain: "OAuthSwiftError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Token refresh failed"])))
+                   return
+               }
+               
+               let parameters = ["range[login]": "\(prefix.lowercased()),\(prefix.lowercased())z"]
+               
+               oauthswift.client.get("https://api.intra.42.fr/v2/users", parameters: parameters) { result in
+                   switch result {
+                   case .success(let response):
+                       do {
+                           let users = try JSONDecoder().decode([UserPreview].self, from: response.data)
+                           completion(.success(users))
+                       } catch let jsonError {
+                           print("JSON decoding error: \(jsonError)")
+                           completion(.failure(jsonError))
+                       }
+                   case .failure(let error):
+                       completion(.failure(error))
+                   }
+               }
+           }
+       }
 }
