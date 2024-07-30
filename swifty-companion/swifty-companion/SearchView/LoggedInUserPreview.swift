@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct UserProfileView: View {
+struct LoggedInUserPreview: View {
     var user: User?
     
     var body: some View {

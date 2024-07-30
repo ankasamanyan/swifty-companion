@@ -9,38 +9,23 @@ import SwiftUI
 import Kingfisher
 
 struct SearchProfilePreview: View {
-    var user: UserPreview
+    var user: UserPreview?
     
     var body: some View {
         GroupBox {
-            VStack(alignment: .leading) {
-                HStack {
-                    if let imageUrl = user.images.link, let url = URL(string: imageUrl) {
-                        KFImage(url)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
-                            .padding(.trailing, 10)
-                    } else {
-                        Image(systemName: "person.circle")
-                            .font(.system(size: 50))
-                            .padding(.trailing, 10)
-                    }
-                    VStack(alignment: .leading) {
-                        Text("\(user.name) \(user.surname)")
-                        Text("@\(user.nickname)")
-                            .font(.headline)
-                    }
-                    .font(.system(size: 25, weight: .semibold))
+            HStack {
+                NavigationLink(destination: ProfileView(userId: user!.id)) {
+                    SearchProfileImageView(imageUrl: user?.images.link)
                 }
-                .padding(10)
-                .frame(width: 300, alignment: .leading)
+                VStack(alignment: .leading) {
+                    Text("\(user?.name ?? "Catto") \(user?.surname ?? "Wiskerson")")
+                    Text("@\(user?.nickname ?? "cwiskers")")
+                        .font(.headline)
+                }
+                .font(.system(size: 20, weight: .semibold))
             }
+            .frame(width: 300, alignment: .leading)
         }
     }
-}
 
-//#Preview {
-//    SearchProfilePreview(user: <#UserPreview#>)
-//}
+}

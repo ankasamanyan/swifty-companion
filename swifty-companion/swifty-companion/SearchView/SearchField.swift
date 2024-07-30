@@ -23,6 +23,7 @@ struct SearchField: View {
                     onSearchTextChanged(newValue)
                 }
         }
+        .padding(.top, -20)
         .padding(.horizontal, 25)
     }
 }

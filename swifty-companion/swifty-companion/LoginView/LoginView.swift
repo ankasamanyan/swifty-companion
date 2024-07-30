@@ -13,6 +13,7 @@ struct LoginView: View {
     @StateObject var oauth2Handler = OAuth2Handler()
     @State private var navigateToDetail = false
     @State private var errorMessage: String?
+    @State private var isLoading = false
 
     var body: some View {
         NavigationStack {
@@ -57,28 +58,38 @@ struct LoginView: View {
                     .padding(.bottom, 50)
                 }
                 .padding()
+                
+                if isLoading {
+                    ProgressView()
+                }
             }
             .onReceive(oauth2Handler.$isAuthenticated) { isAuthenticated in
                 if isAuthenticated {
-                    navigateToDetail = true
+                    fetchUserData()
                 }
-                fetchUserData()
             }
             .navigationDestination(isPresented: $navigateToDetail) {
-                SearchView(myUser: user)
+                if let user = user {
+                    SearchView(myUser: user)
+                }
             }
         }
     }
-        private func fetchUserData() {
-            APIClient.shared.fetchMyUserData { result in
-                switch result {
-                case .success(let user):
-                    self.user = user
-                case .failure(let error):
-                    self.errorMessage = error.localizedDescription
-                }
+    
+    private func fetchUserData() {
+        isLoading = true
+
+        APIClient.shared.fetchMyUserData { result in
+            self.isLoading = false
+            switch result {
+            case .success(let user):
+                self.user = user
+                self.navigateToDetail = true
+            case .failure(let error):
+                self.errorMessage = error.localizedDescription
             }
         }
+    }
 }
 
 #Preview {

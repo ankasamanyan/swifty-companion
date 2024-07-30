@@ -1,31 +1,70 @@
+//
+//  ProfileView.swift
+//  swifty-companion
+//
+//  Created by Anait Kasamanian on 17.06.24.
+//
+
 import SwiftUI
 
 struct ProfileView: View {
-    var user: User?
     @State private var errorMessage: String?
+    @State private var isLoading = false
+    @State private var errorLoading = false
+    @State private var fetchedUser: User?
+    @State private var hasFetchedUser = false
+    var user: User?
+    var userId: Int?
 
     var body: some View {
         ScrollView {
-            VStack {
-                ProfileImageView(imageUrl: user?.image.link)
-                    .padding(.top, 20)
-                ProfileHeaderView(user: user)
+            if isLoading {
+                ProgressView()
+            } else if errorLoading {
+                Text("Error loading data: \(errorMessage ?? "Unknown error")")
+                    .foregroundColor(.red)
+            } else {
+                VStack {
+                    ProfileImageView(imageUrl: (fetchedUser ?? user)?.image.link)
+                        .padding(.top, 20)
+                    ProfileHeaderView(user: fetchedUser ?? user)
 
-                if let skills = user?.cursusUsers[1].skills {   // plz fix this at some point
-                    SkillView(skills: skills)
-                }
+                    if let skills = (fetchedUser ?? user)?.cursusUsers[1].skills {
+                        SkillView(skills: skills)
+                    }
 
-                if let projectsUsers = user?.projectsUsers {
-                    ProjectCarouselView(projects: projectsUsers)
+                    if let projectsUsers = (fetchedUser ?? user)?.projectsUsers {
+                        ProjectCarouselView(projects: projectsUsers)
+                    }
+                    Spacer()
                 }
-                Spacer()
+                .onAppear {
+                    if userId != nil && !hasFetchedUser {
+                        fetchUserById()
+                    }
+                }
             }
         }
         .navigationTitle("Profile")
     }
-}
+    
+    private func fetchUserById() {
+        guard let userId = userId else { return }
+        isLoading = true
+        errorLoading = false
 
-
-#Preview {
-    ProfileView()
+        APIClient.shared.fetchUserById(userId: userId) { result in
+            DispatchQueue.main.async {
+                self.isLoading = false
+                switch result {
+                case .success(let fetchedUser):
+                    self.fetchedUser = fetchedUser
+                    self.hasFetchedUser = true
+                case .failure(let error):
+                    self.errorLoading = true
+                    self.errorMessage = error.localizedDescription
+                }
+            }
+        }
+    }
 }

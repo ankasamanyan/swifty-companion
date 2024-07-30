@@ -19,8 +19,9 @@ struct SearchHeader: View {
                 .font(.system(size: 65)).bold()
         }
         .font(.system(size: 42).bold())
-        .padding(.top, 90)
+        .padding(.top, 70)
         .padding(.leading, 30)
+        .padding(.bottom, 10)
         .foregroundColor(.white)
     }
 }

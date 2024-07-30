@@ -37,7 +37,6 @@ struct UserPreview: Codable, Identifiable {
       var surname:        String
       var nickname:       String
       var images:         UserImage
-      var displayname:    String
       
       enum CodingKeys: String, CodingKey {
           case id
@@ -45,7 +44,6 @@ struct UserPreview: Codable, Identifiable {
           case surname    = "last_name"
           case nickname   = "login"
           case images     = "image"
-          case displayname
       }
 }
 
