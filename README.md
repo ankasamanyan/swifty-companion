@@ -32,9 +32,9 @@ To run the project locally, follow these steps:
     Open the `Credentials.plist` file in the root of the `swifty-companion` directory and fill in the `CLIENT_ID` and `CLIENT_SECRET` with your 42 API credentials:
    
 <img width="1106" alt="image" src="https://github.com/user-attachments/assets/042d8938-281d-4329-8cbc-a475497cdb83">
+<br>
 
-
-5. **Build and run** the project using Xcode on your preferred simulator or device.
+4. **Build and run** the project using Xcode on your preferred simulator or device.
 
 ## Usage
 
