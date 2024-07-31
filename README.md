@@ -22,11 +22,7 @@ To run the project locally, follow these steps:
     ```sh
     git clone https://github.com/ankasamanyan/swifty-companion.git
     ```
-
-2. **Navigate to the project directory**:
-    ```sh
-    cd swifty-companion
-    ```
+2. Make sure that all the dependencies are installed, otherwise add them manually, from the dependencie list below
 
 3. **Fill in your credentials**:
     Open the `Credentials.plist` file in the root of the `swifty-companion` directory and fill in the `CLIENT_ID` and `CLIENT_SECRET` with your 42 API credentials:
