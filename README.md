@@ -2,6 +2,11 @@
 
 Swifty-Companion is an iOS application designed to help students of 42 Network of software engineering schools keep track of their profiles, skills, and projects. It utilizes OAuth2 for authentication and interacts with the 42 API to fetch, search and display user data.
 
+## Preview
+
+https://github.com/user-attachments/assets/bf6430e9-92a0-45cb-bd9a-ce4faf715a45
+
+
 ## Features
 
 - **OAuth2 Authentication**: Securely log in using your 42 credentials.
@@ -9,10 +14,6 @@ Swifty-Companion is an iOS application designed to help students of 42 Network o
 - **Search Users**: Search for other 42 users by their login.
 - **User Preview**: Get a quick preview of user profiles with key information displayed.
 - **Skills and Projects**: Detailed view of skills and projects for each user.
-
-## Preview
-
-https://github.com/user-attachments/assets/bf6430e9-92a0-45cb-bd9a-ce4faf715a45
 
 ## Installation
 
