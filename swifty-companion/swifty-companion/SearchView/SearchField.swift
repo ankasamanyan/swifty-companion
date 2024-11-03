@@ -10,8 +10,7 @@ import SwiftUI
 
 struct SearchField: View {
     @Binding var searchText: String
-    var onSearchTextChanged: (String) -> Void
-    
+
     var body: some View {
         HStack {
             TextField("Search", text: $searchText)
@@ -19,12 +18,8 @@ struct SearchField: View {
                 .padding(.horizontal, 15)
                 .background(Color(.systemGray6))
                 .clipShape(RoundedRectangle(cornerRadius: 20))
-                .onChange(of: searchText) { oldValue,newValue in
-                    onSearchTextChanged(newValue)
-                }
         }
         .padding(.top, -20)
         .padding(.horizontal, 25)
     }
 }
-
