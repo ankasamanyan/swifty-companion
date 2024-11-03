@@ -32,6 +32,7 @@
 		04DF888C2C2AD353003C8341 /* OAuth2Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF888B2C2AD353003C8341 /* OAuth2Handler.swift */; };
 		04DF888E2C2AD35B003C8341 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF888D2C2AD35B003C8341 /* APIClient.swift */; };
 		04E4F79C2C3B4D1900889756 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F79B2C3B4D1900889756 /* SearchView.swift */; };
+		A20162362CD7F92D007CDF05 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20162352CD7F92D007CDF05 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		04DF888D2C2AD35B003C8341 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		04DF888F2C2ADF39003C8341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		04E4F79B2C3B4D1900889756 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		A20162352CD7F92D007CDF05 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				04E4F79B2C3B4D1900889756 /* SearchView.swift */,
+				A20162352CD7F92D007CDF05 /* SearchViewModel.swift */,
 				0469AD252C4425810021C4EA /* BackgroundGradient.swift */,
 				0495592B2C52A41F00707E1B /* SearchProfilePreview.swift */,
 				0469AD272C4426050021C4EA /* SearchHeader.swift */,
@@ -256,6 +259,7 @@
 				0469AD202C42F3C20021C4EA /* SectionView.swift in Sources */,
 				0469AD282C4426050021C4EA /* SearchHeader.swift in Sources */,
 				044433052C2080D9008506BE /* LoginView.swift in Sources */,
+				A20162362CD7F92D007CDF05 /* SearchViewModel.swift in Sources */,
 				0469AD2A2C44262B0021C4EA /* SearchField.swift in Sources */,
 				0495592C2C52A41F00707E1B /* SearchProfilePreview.swift in Sources */,
 				04DF888C2C2AD353003C8341 /* OAuth2Handler.swift in Sources */,
