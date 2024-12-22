@@ -14,15 +14,18 @@ struct SearchProfilePreview: View {
     var body: some View {
         GroupBox {
             HStack {
-                NavigationLink(destination: ProfileView(userId: user!.id)) {
-                    SearchProfileImageView(imageUrl: user?.images.link)
+                if (user?.id != nil)
+                {
+                    NavigationLink(destination: ProfileView(userId: user?.id)) {
+                        SearchProfileImageView(imageUrl: user?.images.link)
+                    }
                 }
-                VStack(alignment: .leading) {
-                    Text("\(user?.name ?? "Catto") \(user?.surname ?? "Wiskerson")")
-                    Text("@\(user?.nickname ?? "cwiskers")")
-                        .font(.headline)
-                }
-                .font(.system(size: 20, weight: .semibold))
+                    VStack(alignment: .leading) {
+                        Text("\(user?.name ?? "Catto") \(user?.surname ?? "Wiskerson")")
+                        Text("@\(user?.nickname ?? "cwiskers")")
+                            .font(.headline)
+                    }
+                    .font(.system(size: 20, weight: .semibold))
             }
             .frame(width: 300, alignment: .leading)
         }

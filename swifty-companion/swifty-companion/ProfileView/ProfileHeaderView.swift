@@ -25,8 +25,19 @@ struct ProfileHeaderView: View {
                     .foregroundStyle(.gray)
                     .padding(.bottom, 5)
                 
-                LevelView(level: user.cursusUsers[1].level)
-                    .padding(.bottom, 20)
+                if user.cursusUsers.indices.contains(1) {
+                    LevelView(level: user.cursusUsers[1].level)
+                        .padding(.bottom, 20)
+                } else {
+                    if user.cursusUsers.indices.contains(0) {
+                        LevelView(level: user.cursusUsers[0].level)
+                            .padding(.bottom, 20)
+                    } else {
+                        Text("Level information unavailable")
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 20)
+                    }
+                }
 
                 SectionView(title:  "Email") {
                     Text("\(user.email)")

@@ -13,23 +13,29 @@ struct ProjectCarouselView: View {
 
     var body: some View {
         SectionView(title: "Projects") {
-            ScrollView(.vertical) {
-                VStack(spacing: 10) {
-                    ForEach(projects) { projectUser in
-                        ProjectView(projectUser: projectUser)
-                            .scrollTransition { content, phase in
-                                content
-                                    .opacity(phase.isIdentity ? 1 : 0.5)
-                                    .scaleEffect(phase.isIdentity ? 1 : 0.7)
-                            }
+            if projects.isEmpty {
+                Text("No projects yet")
+                    .foregroundColor(.gray)
+
+            } else{
+                ScrollView(.vertical) {
+                    VStack(spacing: 10) {
+                        ForEach(projects) { projectUser in
+                            ProjectView(projectUser: projectUser)
+                                .scrollTransition { content, phase in
+                                    content
+                                        .opacity(phase.isIdentity ? 1 : 0.5)
+                                        .scaleEffect(phase.isIdentity ? 1 : 0.7)
+                                }
+                        }
                     }
+                    .scrollTargetLayout()
                 }
-                .scrollTargetLayout()
+                .frame(height: 350)
             }
-            .frame(height: 350)
         }
-        .padding(.vertical)
-        .scrollTargetBehavior(.viewAligned)
+            .padding(.vertical)
+            .scrollTargetBehavior(.viewAligned)
     }
 }
 

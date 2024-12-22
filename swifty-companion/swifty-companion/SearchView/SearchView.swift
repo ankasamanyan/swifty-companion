@@ -52,7 +52,20 @@ struct SearchView: View {
                     }
                     .padding(.top, 30)
                 } else if !viewModel.searchText.isEmpty && viewModel.users.isEmpty {
-                    Text("There is no such user")
+                    SearchProfilePreview(user: nil)
+//                    GroupBox {
+//                        HStack {
+//                                SearchProfileImageView(imageUrl: nil)
+//                                VStack(alignment: .leading) {
+//                                    Text ("Catto Wiskerson")
+//                                    Text("@cwiskers")
+//                                        .font(.headline)
+//                                }
+//                                .font(.system(size: 20, weight: .semibold))
+//                        }
+//                        .frame(width: 300, alignment: .leading)
+//                    }
+//                    .padding(.top, 30)
                     Spacer()
                 }
             }
