@@ -29,8 +29,16 @@ struct ProfileView: View {
                         .padding(.top, 20)
                     ProfileHeaderView(user: fetchedUser ?? user)
 
-                    if let skills = (fetchedUser ?? user)?.cursusUsers[1].skills {
-                        SkillView(skills: skills)
+                    if let fetchedUser = fetchedUser ?? user,
+                       fetchedUser.cursusUsers.indices.contains(1) {
+                        SkillView(skills: fetchedUser.cursusUsers[1].skills)
+                    } else {
+                        if ((fetchedUser?.cursusUsers.indices.contains(0)) != nil) {
+                            SkillView(skills: (fetchedUser?.cursusUsers[0].skills)!)
+                        } else {
+                            Text("No skills available")
+                                .foregroundColor(.gray)
+                        }
                     }
 
                     if let projectsUsers = (fetchedUser ?? user)?.projectsUsers {
